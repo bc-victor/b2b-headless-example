@@ -1,6 +1,6 @@
-# Next.js + BigCommerce
+# Next.js + B2B BigCommerce
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20%2B%20BigCommerce&demo-description=An%20all-in-one%20starter%20kit%20for%20high-performance%20BigCommerce%20storefronts.&demo-url=https%3A%2F%2Fnext-commerce-v2.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1RzhtOHEvW7xyn9qAsdr5E%2F783c7bbd498d0f3b752637d2efa0bb6e%2FNew_Project__5_.png&from=templates&repository-url=https%3A%2F%2Fgithub.com%2Fbigcommerce%2Fnextjs-commerce&project-name=nextjs-commerce&repository-name=nextjs-commerce&integration-ids=oac_nsrwzogJLEFglVwt2060kB0y)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20%2B%20B2B%20BigCommerce&demo-description=An%20all-in-one%20starter%20kit%20for%20high-performance%20BigCommerce%20storefronts.&demo-url=https%3A%2F%2Fnext-commerce-v2.vercel.app%2F&demo-image=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1RzhtOHEvW7xyn9qAsdr5E%2F783c7bbd498d0f3b752637d2efa0bb6e%2FNew_Project__5_.png&repository-url=https%3A%2F%2Fgithub.com%2FB3BC%2Fb2b-headless-example&project-name=nextjs-b2b-commerce&repository-name=nextjs-b2b-commerce&integration-ids=oac_nsrwzogJLEFglVwt2060kB0y)
 
 A Next.js 14 and App Router-ready headless storefront template for BigCommerce, featuring:
 
@@ -24,7 +24,7 @@ Next.js + BigCommerce requires a [BigCommerce sandbox](https://developer.bigcomm
 
 To get started, use this README and the [example environment variable comments](https://github.com/bigcommerce/nextjs-commerce/blob/main/.env.example).
 
-## Develop locally
+## [Develop locally](./docs/setup-guide.md)
 
 To automatically clone the template repo and configure Vercel environment variables for your project, use the [Deploy with Vercel](#) button at the beginning of this README. After you complete the interactive configuration sequence, you can clone the automatically-created project to your local environment.
 

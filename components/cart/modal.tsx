@@ -3,12 +3,12 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Price from 'components/price';
-import type { VercelCart as Cart } from 'lib/bigcommerce/types';
+import { CallbackKey, type VercelCart as Cart } from 'lib/bigcommerce/types';
 import { DEFAULT_OPTION } from 'lib/constants';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, ReactElement, useEffect, useRef, useState } from 'react';
 import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
@@ -23,6 +23,33 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+  const [addAllToQuoteBtn, setAddAllToQuoteBtn] = useState<ReactElement>();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!window.b2b?.initializationEnvironment.isInit) {
+        return;
+      }
+
+      clearInterval(intervalId);
+      
+      window.b2b.callbacks.addEventListener(CallbackKey.onClickCartButton, (e) => {
+        // not redirect to /cart.php
+        e.preventDefault();
+        setIsOpen(true);
+        window.b2b.utils.openPage("CLOSE")
+      })
+      if (window.b2b.utils.quote.getButtonInfoAddAllFromCartToQuote().enabled) {
+        setAddAllToQuoteBtn(
+          <button
+            onClick={window.b2b.utils.quote.addProductsFromCart}
+            className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+          >
+            Add all to quote
+          </button>
+        );
+      }
+    }, 50);
+  }, []);
 
   useEffect(() => {
     // Open cart modal when quantity changes.
@@ -176,12 +203,15 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       />
                     </div>
                   </div>
-                  <a
-                    href={cart.checkoutUrl}
-                    className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-                  >
-                    Proceed to Checkout
-                  </a>
+                  <div className="flex flex-col gap-y-3">
+                    <a
+                      href={cart.checkoutUrl}
+                      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                    >
+                      Proceed to Checkout
+                    </a>
+                    {addAllToQuoteBtn}
+                  </div>
                 </div>
               )}
             </Dialog.Panel>

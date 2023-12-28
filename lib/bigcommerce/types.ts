@@ -77,7 +77,9 @@ export type VercelProductVariant = {
   title: string;
   availableForSale: boolean;
   selectedOptions: {
+    nameEntityId: number;
     name: string;
+    valueEntityId: number;
     value: string;
   }[];
   price: VercelMoney;
@@ -604,3 +606,51 @@ export type BigCommerceProduct = {
   variants: Connection<BigCommerceProductVariant>;
   productOptions: Connection<BigCommerceProductOption>;
 };
+
+type B2bButtonType = {
+  classSelector: string;
+  color: string;
+  customCss: string;
+  enabled: boolean;
+  locationSelector: string;
+  text: string;
+};
+
+
+export enum CallbackKey {
+  onQuoteCreate = 'on-quote-create',
+  onAddToShoppingList = 'on-add-to-shopping-list',
+  onClickCartButton = 'on-click-cart-button'
+}
+
+type CallbackEvent = {
+  data: any
+  preventDefault: () => void
+}
+
+declare global {
+  interface Window {
+    b2b: {
+      initializationEnvironment: { isInit: boolean };
+      callbacks: {
+        addEventListener: (key: CallbackKey, callback:  (event: CallbackEvent) => void) => void
+      }
+      utils: {
+        user: {
+          getProfile: () => { role: number };
+        };
+        openPage: (pageId: string) => void;
+        quote: {
+          getButtonInfo: () => B2bButtonType;
+          addProductFromPage: (item: any) => Promise<void>;
+          addProductsFromCart: () => Promise<void>;
+          getButtonInfoAddAllFromCartToQuote: () => B2bButtonType;
+        };
+        shoppingList: {
+          getButtonInfo: () => B2bButtonType;
+          addProductFromPage: (item: any) => Promise<void>;
+        };
+      };
+    };
+  }
+}

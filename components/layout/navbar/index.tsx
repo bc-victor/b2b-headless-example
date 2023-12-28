@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search from './search';
+import UserLinks from './user-links';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
@@ -25,6 +26,7 @@ export default async function Navbar() {
               {SITE_NAME}
             </div>
           </Link>
+          <UserLinks mobile={false} />
           {menu.length ? (
             <ul className="hidden gap-6 text-sm md:flex md:items-center">
               {menu.map((item: Menu) => (

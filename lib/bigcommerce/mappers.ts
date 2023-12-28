@@ -22,7 +22,11 @@ type ProductsList = { productId: number; productData: BigCommerceProduct }[];
 
 const vercelFromBigCommerceLineItems = (lineItems: BigCommerceCart['lineItems']) => {
   const { physicalItems, digitalItems, customItems } = lineItems;
-  const cartItemMapper = ({ entityId, quantity, productEntityId }: DigitalOrPhysicalItem | CartCustomItem) => ({
+  const cartItemMapper = ({
+    entityId,
+    quantity,
+    productEntityId
+  }: DigitalOrPhysicalItem | CartCustomItem) => ({
     merchandiseId: productEntityId ? productEntityId.toString() : entityId.toString(),
     quantity
   });
@@ -50,7 +54,9 @@ const bigCommerceToVercelVariants = (
       title: '',
       availableForSale: variant.isPurchasable,
       selectedOptions: variant.options?.edges.map(({ node: option }) => ({
+        nameEntityId: option.entityId,
         name: option.displayName ?? '',
+        valueEntityId: option.values.edges.map(({ node }) => node.entityId)[0] ?? 0,
         value: option.values.edges.map(({ node }) => node.label)[0] ?? ''
       })) || [
         {
@@ -206,12 +212,14 @@ const bigCommerceToVercelCartItems = (
         cost: {
           totalAmount: {
             amount:
-            item.extendedListPrice.value.toString() || item.listPrice.value.toString() || '0',
+              item.extendedListPrice.value.toString() || item.listPrice.value.toString() || '0',
             currencyCode: item.extendedListPrice.currencyCode || item.listPrice.currencyCode || ''
           }
         },
         merchandise: {
-          id: isCustomItem ? item.entityId.toString() : (item as DigitalOrPhysicalItem).variantEntityId!.toString(),
+          id: isCustomItem
+            ? item.entityId.toString()
+            : (item as DigitalOrPhysicalItem).variantEntityId!.toString(),
           title: `${item.name}`,
           selectedOptions,
           product
@@ -288,8 +296,11 @@ const bigCommerceToVercelCollection = (collection: BigCommerceCollection): Verce
 };
 
 export {
-  bigCommerceToVercelCart, bigCommerceToVercelCollection, bigCommerceToVercelProduct,
-  bigCommerceToVercelProducts, vercelFromBigCommerceLineItems
+  bigCommerceToVercelCart,
+  bigCommerceToVercelCollection,
+  bigCommerceToVercelProduct,
+  bigCommerceToVercelProducts,
+  vercelFromBigCommerceLineItems
 };
 
 export const vercelToBigCommerceSorting = (

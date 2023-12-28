@@ -45,6 +45,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Suspense>
           <main>{children}</main>
         </Suspense>
+        {/* Add your script tag here */}
+        <script
+          type="module"
+          data-storehash="yourStoreHash"
+          data-channelid="yourChannelId"
+          src="https://cdn.bundleb2b.net/b2b/production/storefront/headless.js"
+        ></script>
       </body>
     </html>
   );

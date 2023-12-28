@@ -8,6 +8,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { VercelMenu as Menu } from 'lib/bigcommerce/types';
 import Search from './search';
+import UserLinks from './user-links';
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
@@ -74,6 +75,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                 <div className="mb-4 w-full">
                   <Search />
                 </div>
+                <UserLinks mobile={true} />
                 {menu.length ? (
                   <ul className="flex w-full flex-col">
                     {menu.map((item: Menu) => (
