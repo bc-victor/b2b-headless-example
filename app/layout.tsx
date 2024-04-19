@@ -50,7 +50,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           type="module"
           data-storehash="glzvoziq5k"
           data-channelid="1489146"
-          src="https://cdn.bundleb2b.net/b2b/production/storefront/headless.js"
+          src="http://localhost:3001/src/buyerPortal.ts"
         ></script>
       </body>
     </html>
