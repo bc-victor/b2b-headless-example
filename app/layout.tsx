@@ -46,12 +46,21 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <main>{children}</main>
         </Suspense>
         {/* Add your script tag here */}
-        <script
+        {/* <script
           type="module"
           data-storehash="glzvoziq5k"
           data-channelid="1489146"
           src="http://localhost:3001/src/buyerPortal.ts"
+        ></script> */}
+        <script
+          id="script-buyer-portal"
+          type="module"
+          data-storehash="glzvoziq5k"
+          data-channelid="1489146"
+          src="https://store-glzvoziq5k.mybigcommerce.com/content/bp/index.Y2Gr2Y9Q.js"
         ></script>
+        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/bp/polyfills-legacy.NdEEpcpz.js"></script>
+        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/bp/index-legacy.BuT-gmvs.js"></script>
       </body>
     </html>
   );
