@@ -57,10 +57,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           type="module"
           data-storehash="glzvoziq5k"
           data-channelid="1489146"
-          src="https://store-glzvoziq5k.mybigcommerce.com/content/bp/index.Y2Gr2Y9Q.js"
+          src="https://store-glzvoziq5k.mybigcommerce.com/content/index.Ci98OFoS.js"
         ></script>
-        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/bp/polyfills-legacy.NdEEpcpz.js"></script>
-        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/bp/index-legacy.BuT-gmvs.js"></script>
+        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/polyfills-legacy.CXJzAxq.js"></script>
+        <script src="https://store-glzvoziq5k.mybigcommerce.com/dav/content/index-legacy.Bv1G_uHe.js"></script>
       </body>
     </html>
   );
